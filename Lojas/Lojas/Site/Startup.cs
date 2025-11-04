@@ -115,10 +115,9 @@ namespace Site
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
-
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -127,13 +126,17 @@ namespace Site
 
             app.UseAuthorization();
 
-            // Mapeando rotas do controlador
+            // Mapeando Razor Pages
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapRazorPages(); // ESSENCIAL para Razor Pages
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+
+
         }
     }
 }
