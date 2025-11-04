@@ -21,7 +21,7 @@ namespace Site
 
 #if !DEBUG
                 // Porta para Release / produção (Railway)
-                var port = Environment.GetEnvironmentVariable("PORT") ?? "7002";
+                var port = Environment.GetEnvironmentVariable("PORT") ?? "80";
                 webBuilder.UseUrls($"http://0.0.0.0:{port}");
     
 #endif
