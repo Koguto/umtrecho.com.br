@@ -1,0 +1,154 @@
+﻿@model ViewModels.PerfilViewModel
+
+@{
+    ViewData["Title"] = "Cadastro de Perfil";
+}
+
+<h2>Cadastro de Perfil</h2>
+
+<form asp-action="Criar" method="post" class="formulario-perfil">
+    <fieldset>
+        <legend>Dados Pessoais</legend>
+        <div class="form-group">
+            <label class="control-label">Nome:</label>
+            <span class="informativo">@Model.Nome</span>
+            <input type="hidden" name="Nome" value="@Model.Nome" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Email:</label>
+            <span class="informativo">@Model.Email</span>
+            <input type="hidden" name="Email" value="@Model.Email" />
+        </div>
+    </fieldset>
+
+    <br />
+
+    <!-- Formulário de endereço escondido inicialmente -->
+    <div id="formEndereco" class="mt-4" style="display: none;">
+        <fieldset>
+            <legend>Endereço</legend>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label asp-for="Endereco.CEP" class="control-label">CEP:</label>
+                    <input asp-for="Endereco.CEP" id="cep" maxlength="10" class="form-control campo-200px" />
+                    <span asp-validation-for="Endereco.CEP" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-12">
+                    <label asp-for="Endereco.Rua" class="control-label">Logradouro:</label>
+                    <input asp-for="Endereco.Rua" maxlength="50" class="form-control" />
+                    <span asp-validation-for="Endereco.Rua" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label asp-for="Endereco.Numero" class="control-label">Número:</label>
+                    <input asp-for="Endereco.Numero" maxlength="6" class="form-control campo-100px" />
+                    <span asp-validation-for="Endereco.Numero" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label asp-for="Endereco.Complemento" class="control-label">Complemento:</label>
+                    <input asp-for="Endereco.Complemento" maxlength="30" class="form-control campo-100px" />
+                    <span asp-validation-for="Endereco.Complemento" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-3">
+                    <label asp-for="Endereco.Bairro" class="control-label">Bairro:</label>
+                    <input asp-for="Endereco.Bairro" maxlength="30" class="form-control campo-100px" />
+                    <span asp-validation-for="Endereco.Bairro" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label asp-for="Endereco.Cidade" class="control-label">Cidade:</label>
+                    <input asp-for="Endereco.Cidade" maxlength="20" class="form-control campo-100px" />
+                    <span asp-validation-for="Endereco.Cidade" class="text-danger"></span>
+                </div>
+
+                <div class="form-group col-md-1">
+                    <label asp-for="Endereco.Estado" class="control-label">Estado:</label>
+                    <input asp-for="Endereco.Estado" maxlength="6" class="form-control campo-100px" />
+                    <span asp-validation-for="Endereco.Estado" class="text-danger"></span>
+                </div>
+            </div>
+
+            <!-- Botões para salvar ou cancelar -->
+            <button type="submit" class="btn btn-primary">Salvar</button>
+            <button type="button" id="btnCancelarEndereco" class="btn btn-secondary">Cancelar</button>
+        </fieldset>
+    </div>
+
+    <br />
+
+    <!-- Lista de endereços cadastrados -->
+    <fieldset>
+        <legend>Endereço Cadastrado</legend>
+
+        @if (Model.EnderecosAdicionados == null || !Model.EnderecosAdicionados.Any())
+        {
+            <!-- Botão para adicionar novo endereço -->
+            <button type="button" id="btnAdicionarEndereco" class="btn btn-success">Adicionar Novo Endereço</button>
+        }
+        else
+        {
+            <div class="row">
+                @foreach (var endereco in Model.EnderecosAdicionados)
+                {
+                    <div class="col-md-4">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title">@endereco.Rua, @endereco.Numero</h5>
+                                <p class="card-text">@endereco.Bairro, @endereco.Cidade, @endereco.Estado</p>
+                                <p class="card-text">CEP: @endereco.CEP</p>
+                                <button type="button" class="btn btn-warning btnEditarEndereco" data-endereco='@Html.Raw(Json.Serialize(endereco))'>
+                                    <i class="fa fa-edit"></i> Editar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </fieldset>
+</form>
+<br />
+<br />
+<br />
+<br />
+<br />
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(document).ready(function () {
+            $('#cep').mask('00000-000'); // Aplica a máscara ao campo de CEP
+
+            // Mostrar formulário de endereço para adicionar
+            $('#btnAdicionarEndereco').click(function () {
+                $('#formEndereco').slideDown();
+                $('#formEndereco input').val(''); // Limpar campos
+            });
+
+            // Esconder formulário de endereço
+            $('#btnCancelarEndereco').click(function () {
+                $('#formEndereco').slideUp();
+            });
+
+            // Preencher formulário com dados do endereço para edição
+            $('.btnEditarEndereco').click(function () {
+                var endereco = $(this).data('endereco');
+                $('#formEndereco').slideDown();
+
+                // Preencher campos com os dados do endereço
+                $('#Endereco_CEP').val(endereco.cep);
+                $('#Endereco_Rua').val(endereco.rua);
+                $('#Endereco_Numero').val(endereco.numero);
+                $('#Endereco_Complemento').val(endereco.complemento);
+                $('#Endereco_Bairro').val(endereco.bairro);
+                $('#Endereco_Cidade').val(endereco.cidade);
+                $('#Endereco_Estado').val(endereco.estado);
+            });
+        });
+    </script>
+}

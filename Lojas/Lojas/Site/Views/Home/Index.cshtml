@@ -1,0 +1,58 @@
+﻿@using ViewModels
+@model IEnumerable<CategoriaViewModel>
+
+@{ ViewData["Title"] = "É no Xiado da Chinela!"; }
+
+<div class="container">
+
+    <!-- Cabeçalho da seção de Destaques -->
+    <div class="destaques-header">
+        <div class="destaques-header__title">
+            <span class="destaques-title">Destaques para você</span>
+        </div>
+        @*<a class="destaques-header__link" href="/top_products">
+            <button class="destaques-btn-no-outline">
+                Ver tudo&nbsp;
+                <svg viewBox="0 0 11 11" class="destaques-icon-arrow-right">
+                    <path d="M2.5 11c.1 0 .2 0 .3-.1l6-5c.1-.1.2-.3.2-.4s-.1-.3-.2-.4l-6-5c-.2-.2-.5-.1-.7.1s-.1.5.1.7l5.5 4.6-5.5 4.6c-.2.2-.2.5-.1.7.1.1.3.2.4.2z"></path>
+                </svg>
+            </button>
+        </a>*@
+    </div>
+
+    <!-- Loop sobre categorias e seus produtos -->
+    @foreach (var categoria in Model)
+    {
+        <div class="destaques-header">
+            <div class="destaques-header__title">
+                <span class="destaques-title">@categoria.Nome</span>
+            </div>
+            <a class="destaques-header__link" href="/top_products">
+                <button class="destaques-btn-no-outline">
+                    Ver tudo&nbsp;
+                    <svg viewBox="0 0 11 11" class="destaques-icon-arrow-right">
+                        <path d="M2.5 11c.1 0 .2 0 .3-.1l6-5c.1-.1.2-.3.2-.4s-.1-.3-.2-.4l-6-5c-.2-.2-.5-.1-.7.1s-.1.5.1.7l5.5 4.6-5.5 4.6c-.2.2-.2.5-.1.7.1.1.3.2.4.2z"></path>
+                    </svg>
+                </button>
+            </a>
+        </div>
+
+        <div class="destaques-container">
+            <div class="destaques-list">
+                <!-- Loop sobre produtos de cada categoria -->
+                @foreach (var produto in categoria.Produtos)
+                {
+                    <a href="@produto.LinkCompra">
+
+                        <div class="destaques-item">
+                            <img src="@produto.ImagemUrl" alt="@produto.Nome" class="destaques-img">
+                            <p class="destaques-description">@produto.Nome</p>
+                            <span class="destaques-price">@produto.Preco.ToString("C")</span>
+                        </div>
+
+                    </a>
+                }
+            </div>
+        </div>
+    }
+</div>

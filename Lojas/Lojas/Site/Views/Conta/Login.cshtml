@@ -1,0 +1,52 @@
+﻿@model ViewModels.LoginViewModel
+
+@{
+    ViewData["Title"] = "Login";
+
+}
+
+
+<div class="formulario-cadastro">
+    <fieldset>
+        <legend>Login</legend>
+
+        <form asp-action="Login" method="post">
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control campo-200px" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Senha"></label>
+                <input asp-for="Senha" class="form-control campo-200px" type="password" />
+                <span asp-validation-for="Senha" class="text-danger"></span>
+            </div>
+            <!-- Adicione o ValidationSummary para mostrar erros gerais -->
+            <div asp-validation-summary="All" class="text-danger validation-summary-custom"></div>
+
+
+
+            <br />
+            <button type="submit" class="btn btn-primary">Entrar</button>
+        </form>
+
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+    </fieldset>
+</div>

@@ -1,0 +1,29 @@
+﻿
+
+
+<script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
+<script>
+    // Inicializar o Mercado Pago com a chave pública
+    MercadoPago.configurations.setPublicKey('TEST-01f3c99f-8dab-4645-9e2d-5d37b19fff67');
+
+    // Função para pegar o token do cartão
+    function getCardToken() {
+        MercadoPago.createToken(cardForm, function(status, response) {
+            if (status === 200 || status === 201) {
+                // Enviar o token gerado para o backend
+                fetch('/pagamento/CreateOrderAndPayment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        token: response.id
+                    })
+                }).then(response => response.json())
+                  .then(data => console.log(data));
+            } else {
+                alert('Ocorreu um erro: ' + response);
+            }
+        });
+    }
+</script>

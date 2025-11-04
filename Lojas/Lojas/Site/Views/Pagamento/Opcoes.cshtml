@@ -1,0 +1,34 @@
+﻿@model List<Modelos.PagamentoOpcaoModel>
+
+@{
+    ViewData["Title"] = "Opções de Pagamento";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.Error
+    </div>
+}
+else
+{
+    <div>
+      @foreach (var payment in Model) // Aqui Model seria a sua lista de PaymentModel
+        {
+            <div class="payment-card" style="border: 1px solid #ccc; padding: 10px; margin: 5px; display: inline-block; width: 150px; text-align: center;">
+                <img src="@payment.Thumbnail" alt="@payment.Name" style="max-width: 100%; max-height: 50px; object-fit: contain;" />
+                <h4>@payment.Name</h4>
+                <p>@payment.PaymentTypeId</p>
+                <p>Status: @payment.Status</p>
+                <div class="icon-square" style="width: 50px; height: 50px; background-color: #f0f0f0; margin: 5px auto;">
+                    <!-- Customização adicional pode ser feita aqui -->
+                </div>
+            </div>
+        }
+    </div>
+
+
+}
+

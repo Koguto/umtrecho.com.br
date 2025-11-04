@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Verificar Código";
+}
+<div class="formulario-cadastro">
+    <fieldset>
+        <legend>
+            Verifique o código enviado ao seu email
+        </legend>
+
+        <form asp-action="Verificacao" method="post">
+            <div class="form-group">
+                <label for="code">Código de Verificação:</label>
+                <input type="text" name="code" required class="form-control campo-100px" />
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Verificar</button>
+        </form>
+
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+    </fieldset>
+</div>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="text-danger">
+        @Html.ValidationSummary()
+    </div>
+}

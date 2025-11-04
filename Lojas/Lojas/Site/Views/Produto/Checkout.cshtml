@@ -1,0 +1,17 @@
+﻿@model ViewModels.CheckoutViewModel
+
+<div class="checkout-container">
+    <h2>Finalizar Compra</h2>
+
+    <div class="produto-detalhes">
+        <img src="@Model.Produto.ImagemUrl" alt="@Model.Produto.Nome" class="produto-imagem" />
+        <h3>@Model.Produto.Nome</h3>
+        <p><strong>Preço:</strong> R$ @Model.Produto.Preco</p>
+        <p><strong>Código:</strong> @Model.Produto.Codigo</p>
+    </div>
+
+    <div class="qrcode-container">
+        <h3>Escaneie o QR Code para pagar via PIX</h3>
+        <img src="data:image/png;base64,@Model.QrCodeUrl" alt="QR Code" style="width: 300px; height: 300px; border: 1px solid #ddd;" />
+    </div>
+</div>

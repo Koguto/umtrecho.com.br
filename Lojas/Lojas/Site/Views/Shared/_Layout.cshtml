@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Um Trecho</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.rtl.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="~/fontawesome/css/all.css" rel="stylesheet" />
+    <link href="~/fontawesome/css/all.min.css" rel="stylesheet" />
+    <script src="~/fontawesome/js/all.js"></script>
+    <script src="~/fontawesome/js/all.min.js"></script>
+   </head>
+<body>
+    <header>
+        <!-- Barra superior -->
+        <div class="top-bar">
+            <div class="container-fluid">
+                <div class="row w-100">
+                    <!-- Grupo à direita (WhatsApp, Meta Business, Twitter, Idioma, Cadastrar | Entrar) -->
+                    <div class="col-12 d-flex justify-content-end">
+                        <!-- Ícones de Redes Sociais -->
+                        <a href="https://wa.me/SeuNumero" target="_blank" class="social-icon">
+                            <i class="fab fa-whatsapp"></i> <!-- WhatsApp -->
+                        </a>
+                        <a href="https://www.facebook.com/business" target="_blank" class="social-icon">
+                            <i class="fab fa-facebook"></i> <!-- Meta Business -->
+                        </a>
+
+                        <!-- Idioma -->
+                        <div href="#" class="language-dropdown sem-borda">
+                            <i class="fa fa-globe"></i> Português - BR
+                        </div>
+
+                        <!-- Links de Cadastrar | Entrar -->
+                        <div class="auth-links">
+                            <a href="/Conta/Cadastro" class="register-link">Cadastrar</a>
+                            <span>|</span>
+                            <a href="/Conta/login" id="login-button" class="login-link">Entrar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Barra de navegação principal -->
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid menu-inferior">
+                <a class="navbar-brand" href="/">
+                    <img src="~/imagens/logo_um_trecho.png" alt="Logo" style="width: 150px; margin-top: -10px">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+
+                 @*        <li class="nav-item">
+                            <a class="nav-link text-dark" href="/canecas">Canecas</a>
+                        </li>*@
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="/camisetas">Camisetas</a>
+                        </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="/">Colares/Pingentes</a>
+                        </li> 
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Seção de Categorias -->
+                <div class="footer-section">
+                    <h4>Categorias</h4>
+                    <ul>
+                        <li><a href="#"><span>Camisetas</span> <i class="fas fa-tshirt"></i></a></li>
+                        <li><a href="#"><span>Pingentes</span> <i class="fas fa-gem"></i></a></li>
+                        <li><a href="#"><span>Canecas</span> <i class="fas fa-mug-hot"></i></a></li>
+                        @* <li><a href="#"><span>Óculos</span> <i class="fas fa-glasses"></i></a></li> *@
+                    </ul>
+                </div>
+
+                <!-- Seção Sobre -->
+                <div class="footer-section">
+                    <h4></h4>
+                    <p></p>
+                </div>
+
+                <!-- Seção Links Sociais -->
+                <div class="footer-section">
+                    <h4>Links Sociais</h4>
+                    <ul>
+                        <li><a href="https://www.facebook.com/umtrecholoja" target="_blank"><span>Facebook</span> <i class="fab fa-facebook"></i></a></li>
+                        <li><a href="https://www.instagram.com/umtrecholoja" target="_blank"><span>Instagram</span> <i class="fab fa-instagram"></i></a></li>
+                        <li><a href="https://twitter.com/umtrechostore" target="_blank"><span>Twitter</span> <i class="fab fa-twitter"></i></a></li>
+                        <li><a href="https://www.linkedin.com/company/umtrecholoja" target="_blank"><span>LinkedIn</span> <i class="fab fa-linkedin"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Rodapé com informações de copyright -->
+            <div class="footer-copy">
+                ©Um Trecho – Protegido por direitos autorais. Nenhum uso permitido sem autorização - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

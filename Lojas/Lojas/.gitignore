@@ -1,0 +1,75 @@
+# Build Folders
+bin/
+obj/
+out/
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider IDE
+.idea/
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# NuGet packages
+*.nupkg
+packages/
+.nuget/
+
+# Visual Studio Code
+.vscode/
+
+# Logs
+*.log
+*.tlg
+*.etl
+*.pdb
+
+# Publish output
+publish/
+*.pubxml
+*.publishsettings
+
+# IIS Express
+.IISExpress/
+
+# Temporary files
+*.tmp
+*.temp
+*.cache
+
+# Rider caches
+.idea/*/workspace.xml
+.idea/*/tasks.xml
+.idea/dictionaries
+.idea/*/shelf
+
+# Dotnet watch files
+.dotnet/
+
+# Test results
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+# Generated files
+Generated/
+*.g.cs
+*.g.i.cs
+*.designer.cs
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# JetBrains Rider
+.idea/
+*.sln.iml

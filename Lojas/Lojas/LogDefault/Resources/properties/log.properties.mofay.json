@@ -1,0 +1,15 @@
+﻿{
+  "sistema": {
+    "nome": "mofya"
+  },
+  "arquivo": {
+    "agrupamento": "INFO,FATAL,DEBUG,WARN,ERROR",
+    "nome": "{0}.{1}.{2}",
+    "extensao": ".log"
+  },
+    "diretorios": {
+        "Ambiente": "Desenvolvimento",
+        "Producao": "c:\\log\\",
+        "Desenvolvimento": "c:\\log\\"
+    }
+}
