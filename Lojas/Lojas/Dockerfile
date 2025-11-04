@@ -19,8 +19,14 @@ WORKDIR /app
 # Copiar arquivos publicados
 COPY --from=build /app/out ./
 
+# Definir variável de ambiente PORT
+ENV PORT=8080
+
+# Expor porta
+EXPOSE 8080
+
 # Porta que será exposta
-EXPOSE 80
+# EXPOSE 80
 
 # Comando para rodar a aplicação
 ENTRYPOINT ["dotnet", "Site.dll"]

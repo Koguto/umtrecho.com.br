@@ -95,8 +95,8 @@ namespace Site
                     ValidIssuer = "https://localhost:44378", // Altere para o seu Issuer
                     ValidAudience = "https://localhost:44378", // Altere para sua Audience
 #else
-                     ValidIssuer = "https://mofya.com.br", // Altere para o seu Issuer
-                    ValidAudience = "https://mofya.com.br", // Altere para sua Audience
+                     ValidIssuer = "https://umtrecho.com.br", // Altere para o seu Issuer
+                    ValidAudience = "https://umtrecho.com.br", // Altere para sua Audience
 #endif
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(chaveSecreta)) // Altere para sua chave secreta
                 };
@@ -115,9 +115,10 @@ namespace Site
             }
             else
             {
-                app.UseExceptionHandler("/Error");
+                app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -126,17 +127,13 @@ namespace Site
 
             app.UseAuthorization();
 
-            // Mapeando Razor Pages
+            // Mapeando rotas do controlador
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapRazorPages(); // ESSENCIAL para Razor Pages
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-
-
-
         }
     }
 }

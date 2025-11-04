@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using Site;
+using System;
 
 namespace Site
 {
@@ -17,6 +18,14 @@ namespace Site
                 {
                     // Especificando a classe Startup
                     webBuilder.UseStartup<Startup>();
+
+#if !DEBUG
+                // Porta para Release / produção (Railway)
+                var port = Environment.GetEnvironmentVariable("PORT") ?? "7002";
+                webBuilder.UseUrls($"http://0.0.0.0:{port}");
+    
+#endif
+
                 });
     }
 }
