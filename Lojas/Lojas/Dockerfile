@@ -21,6 +21,7 @@ COPY --from=build /app/out ./
 
 # Definir variável de ambiente PORT
 ENV PORT=8080
+ENV CONNECTION_STRING=""
 
 # Expor porta
 EXPOSE 8080
