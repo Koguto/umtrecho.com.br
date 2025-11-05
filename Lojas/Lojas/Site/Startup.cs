@@ -50,11 +50,15 @@ namespace Site
 
                });
 
+            var connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
 
             // Adicionando controllers com Views
             services.AddControllersWithViews();
+            //services.AddDbContext<LojasContext>(options =>
+            //     options.UseSqlServer(Configuration.GetConnectionString("Conexao")));
+
             services.AddDbContext<LojasContext>(options =>
-                 options.UseSqlServer(Configuration.GetConnectionString("Conexao")));
+            options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 
             // Carregar configurações do appsettings.json
